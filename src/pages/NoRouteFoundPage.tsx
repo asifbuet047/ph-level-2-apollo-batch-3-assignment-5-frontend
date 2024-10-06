@@ -3,8 +3,10 @@ import NOT_FOUND from "../../public/PAGE_NOT_FOUND_ANIMATION.json";
 
 export default function NoRouteFoundPage() {
   return (
-    <div className="flex flex-col items-center h-screen">
-      <Lottie animationData={NOT_FOUND} />
+    <div className="border-2 flex flex-row justify-center align-middle">
+      <div className="w-1/2">
+        <Lottie animationData={NOT_FOUND} />
+      </div>
     </div>
   );
 }

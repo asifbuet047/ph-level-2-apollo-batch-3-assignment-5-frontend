@@ -1,5 +1,4 @@
 function NavigationBarComponent() {
-  
   return <div>NavigationBarComponent</div>;
 }
 
