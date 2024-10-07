@@ -38,7 +38,9 @@ function NavigationBarComponent() {
             )}
           </li>
           <li className="pl-2 pr-2">
-            <NavLink to={"/about"}>About Us</NavLink>
+            <NavLink to={"/auth"}>
+              <Button variant="outlined">Log In or Sign Up</Button>
+            </NavLink>
           </li>
         </ul>
       </div>

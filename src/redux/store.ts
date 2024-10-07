@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage";
 import { allApiEndPoints } from "./api/allApiEndpoints";
 import { cartReducer } from "./slices/cartSlice";
 import { bikesReducer } from "./slices/bikesSlice";
+import { filterReducer } from "./slices/filterSlice";
 
 const persistConfiguratio = {
   key: "cart",
@@ -13,6 +14,7 @@ const persistConfiguratio = {
 
 const allReducers = combineReducers({
   bikes: bikesReducer, //Non-Persisted
+  filters: filterReducer, //Non-Persisted
   cart: cartReducer, //Persisted
   [allApiEndPoints.reducerPath]: allApiEndPoints.reducer,
 });

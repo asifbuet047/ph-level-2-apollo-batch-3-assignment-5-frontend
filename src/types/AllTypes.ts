@@ -48,3 +48,18 @@ export interface TCartData {
 export interface TCartState {
   carts: TCartData[];
 }
+
+export interface TFilterData {
+  filter_name: string;
+  filter_value: string | number;
+  filter_quantity: number;
+  filter_checked: boolean;
+}
+
+export interface TFilterState {
+  filters: TFilterData[];
+}
+
+export interface TSearchData {
+  field: string;
+}
