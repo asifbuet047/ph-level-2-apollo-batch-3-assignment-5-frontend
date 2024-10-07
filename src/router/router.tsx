@@ -4,6 +4,7 @@ import NoRouteFoundPage from "../pages/NoRouteFoundPage";
 import HomePage from "../pages/HomePage";
 import AuthenticationPage from "../pages/AuthenticationPage";
 import AllBikesPage from "../pages/AllBikesPage";
+import AddBikePage from "../pages/AddBikePage";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,11 @@ const router = createBrowserRouter([
       {
         path: "/bikes",
         element: <AllBikesPage />,
+        errorElement: <NoRouteFoundPage />,
+      },
+      {
+        path: "/add",
+        element: <AddBikePage />,
         errorElement: <NoRouteFoundPage />,
       },
     ],

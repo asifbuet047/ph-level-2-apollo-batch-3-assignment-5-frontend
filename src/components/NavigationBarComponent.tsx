@@ -18,10 +18,10 @@ function NavigationBarComponent() {
             <NavLink to={"/"}>Homepage</NavLink>
           </li>
           <li className="pl-2 pr-2">
-            <NavLink to={"/bikes"}>All Products</NavLink>
+            <NavLink to={"/bikes"}>All Bikes</NavLink>
           </li>
           <li className="pl-2 pr-2">
-            <NavLink to={"/manage"}>Manage Products</NavLink>
+            <NavLink to={"/add"}>Add Bike</NavLink>
           </li>
           <li className="pl-2 pr-2">
             {cart?.length > 0 ? (
