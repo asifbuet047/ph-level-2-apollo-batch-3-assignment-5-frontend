@@ -4,6 +4,8 @@ import { useGetAllBikesQuery } from "../redux/api/allApiEndpoints";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { TBike } from "../types/AllTypes";
 import { storeAllBikes } from "../redux/slices/bikesSlice";
+import { clearSearch } from "../redux/slices/searchSlice";
+import AllBikesComponent from "../components/AllBikesComponent";
 
 function AllBikesPage() {
   const [width, setWidth] = useState(0);
@@ -42,7 +44,7 @@ function AllBikesPage() {
       ref={refForWidth}
     >
       <div>{isFetching && <BarLoader width={width}></BarLoader>}</div>
-      <div></div>
+      <div>{isSuccess && <AllBikesComponent />}</div>
     </div>
   );
 }

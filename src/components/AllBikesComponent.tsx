@@ -1,7 +1,17 @@
 import React from "react";
+import { useAppSelector } from "../redux/hooks";
+import SingleBikeCardComponent from "./SingleBikeCardComponent";
 
 function AllBikesComponent() {
-  return <div>AllBikesComponent</div>;
+  const allBikes = useAppSelector((state) => state.bikes.bikes);
+
+  return (
+    <div>
+      {allBikes.map((bike) => (
+        <SingleBikeCardComponent bike={bike} />
+      ))}
+    </div>
+  );
 }
 
 export default AllBikesComponent;

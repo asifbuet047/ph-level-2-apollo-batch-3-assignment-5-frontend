@@ -51,7 +51,7 @@ export interface TCartState {
 
 export interface TFilterData {
   filter_name: string;
-  filter_value: string | number;
+  filter_value: string | number | boolean;
   filter_quantity: number;
   filter_checked: boolean;
 }
