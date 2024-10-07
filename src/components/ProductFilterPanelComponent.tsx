@@ -37,6 +37,7 @@ function ProductFilterPanelComponent({
   const activeFilters: TFilterData[] = filters.filter(
     (each) => each.filter_checked
   );
+  console.log(allBikes);
 
   const brandPanelData = allBikes
     .map((bike) => bike.brand)
@@ -491,7 +492,7 @@ function ProductFilterPanelComponent({
               Availability
             </AccordionSummary>
             <div className="">
-              {yearPanelData.map((each, index) => (
+              {availablePanelData.map((each, index) => (
                 <div key={index} className="flex flex-row justify-between m-2">
                   {activeFilters.length > 0 &&
                   activeFilters.findIndex(
