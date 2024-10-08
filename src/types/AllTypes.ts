@@ -71,3 +71,9 @@ export interface TDiscount {
   bike_discount: number;
   bikeId: string;
 }
+
+export interface TAuthorizedUserInfo {
+  email: string;
+  role: "user" | "admin";
+  token: string;
+}
