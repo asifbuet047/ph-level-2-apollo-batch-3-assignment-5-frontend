@@ -15,14 +15,14 @@ export const parseInputValuesForBikeCreationSubmit = (dataObject: any) => {
   for (const key in temp) {
     if (key === "pricePerHour" || key === "cc" || key === "year") {
       temp[key] = Number.parseInt(temp[key]);
-    } else if (key === "bike_image_url") {
+    } else if (key === "bike_image") {
       temp[key] = temp[key][0];
     }
   }
-  const { bike_image_url, ...details } = temp;
+  const { bike_image, ...details } = temp;
   return {
     details,
-    file: bike_image_url,
+    file: bike_image,
   };
 };
 

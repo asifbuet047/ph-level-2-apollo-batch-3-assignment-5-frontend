@@ -16,7 +16,7 @@ function AddBikePage() {
     formState: { errors },
   } = useForm();
 
-  const [createBike, { isError, isSuccess, isLoading }] =
+  const [createBike, { isError, isSuccess, isLoading, error }] =
     useCreateBikeMutation();
   const navigate = useNavigate();
   const refForWidth = useRef(null);
@@ -129,7 +129,7 @@ function AddBikePage() {
               />
             )}
 
-            {errors.category && <p>CC is required</p>}
+            {errors.cc && <p>CC is required</p>}
 
             {isLoading ? (
               <TextField
@@ -177,8 +177,8 @@ function AddBikePage() {
               <TextField
                 variant="outlined"
                 type="number"
-                label="Product quantity"
-                placeholder="Product quantity"
+                label="Bike rent price"
+                placeholder="Bike rent price"
                 className="mt-2 mb-2"
                 error={errors.quantity ? true : false}
                 fullWidth
@@ -187,7 +187,7 @@ function AddBikePage() {
               />
             )}
 
-            {errors.quantity && <p>Price per hour is required</p>}
+            {errors.pricePerHour && <p>Price per hour is required</p>}
 
             {isLoading ? (
               <TextField
@@ -216,7 +216,7 @@ function AddBikePage() {
               />
             )}
 
-            {errors.price && <p>Bike manufacturing year is required</p>}
+            {errors.year && <p>Bike manufacturing year is required</p>}
 
             {isLoading ? (
               <TextField

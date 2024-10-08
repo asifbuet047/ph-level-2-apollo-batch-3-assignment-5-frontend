@@ -16,7 +16,7 @@ export const allApiEndPoints = baseApi.injectEndpoints({
             formData.append(key, details[key]);
           }
           return {
-            url: "/bikes",
+            url: "/api/bikes",
             method: "POST",
             body: formData,
           };
@@ -53,7 +53,7 @@ export const allApiEndPoints = baseApi.injectEndpoints({
       getAllBikes: builder.query({
         query: () => {
           return {
-            url: `/bikes`,
+            url: `/api/bikes`,
             method: "GET",
           };
         },

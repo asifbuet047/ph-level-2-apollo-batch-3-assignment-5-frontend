@@ -51,11 +51,6 @@ const bikeCreationValidationSchema = z.object({
       invalid_type_error: "Availability must be boolean",
     })
     .default(false),
-  bike_image: z
-    .string({
-      invalid_type_error: "Bike Image URL must be string",
-    })
-    .optional(),
 });
 
 const bikeUpdateValidationSchema = z.object({
