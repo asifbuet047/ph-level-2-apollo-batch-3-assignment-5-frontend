@@ -1,10 +1,16 @@
 import React from "react";
-import { TBike } from "../types/AllTypes";
+import { TBike, TDiscount } from "../types/AllTypes";
 import { motion } from "framer-motion";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { Button } from "@mui/material";
 
-function SingleBikeCardComponent({ bike }: { bike: TBike }) {
+function SingleBikeCardComponent({
+  bike,
+  discounts,
+}: {
+  bike: TBike;
+  discounts: TDiscount[];
+}) {
   return (
     <div className="border-2 shadow-md rounded-md flex flex-col justify-between items-center p-2 bg-[#55E4F1] text-black">
       <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 1.05 }}>

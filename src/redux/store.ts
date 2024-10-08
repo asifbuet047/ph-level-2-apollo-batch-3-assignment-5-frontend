@@ -5,6 +5,7 @@ import { allApiEndPoints } from "./api/allApiEndpoints";
 import { cartReducer } from "./slices/cartSlice";
 import { bikesReducer } from "./slices/bikesSlice";
 import { filterReducer } from "./slices/filterSlice";
+import { searchReducer } from "./slices/searchSlice";
 
 const persistConfiguratio = {
   key: "cart",
@@ -15,6 +16,7 @@ const persistConfiguratio = {
 const allReducers = combineReducers({
   bikes: bikesReducer, //Non-Persisted
   filters: filterReducer, //Non-Persisted
+  search: searchReducer,
   cart: cartReducer, //Persisted
   [allApiEndPoints.reducerPath]: allApiEndPoints.reducer,
 });

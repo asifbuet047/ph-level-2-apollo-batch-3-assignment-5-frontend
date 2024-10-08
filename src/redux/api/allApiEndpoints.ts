@@ -1,5 +1,6 @@
 import {
   TBike,
+  TDiscount,
   TGenericSuccessfulResponse,
   TPaymentIntentParams,
 } from "../../types/AllTypes";
@@ -16,7 +17,7 @@ export const allApiEndPoints = baseApi.injectEndpoints({
             formData.append(key, details[key]);
           }
           return {
-            url: "/api/bikes",
+            url: "/bikes",
             method: "POST",
             body: formData,
           };
@@ -53,7 +54,7 @@ export const allApiEndPoints = baseApi.injectEndpoints({
       getAllBikes: builder.query({
         query: () => {
           return {
-            url: `/api/bikes`,
+            url: `/bikes`,
             method: "GET",
           };
         },
@@ -144,6 +145,26 @@ export const allApiEndPoints = baseApi.injectEndpoints({
           };
         },
       }),
+      getAllDiscounts: builder.query({
+        query: () => {
+          return {
+            url: "/discount",
+            method: "GET",
+          };
+        },
+        transformResponse: (
+          response: TGenericSuccessfulResponse<TDiscount[]>
+        ) => {
+          return {
+            data: response.data,
+          };
+        },
+        transformErrorResponse: (response) => {
+          return {
+            error: response.data,
+          };
+        },
+      }),
     };
   },
 });
@@ -154,4 +175,5 @@ export const {
   useGetSingleBikeQuery,
   useUpdateSingleBikeMutation,
   useDeleteSingleBikeMutation,
+  useGetAllDiscountsQuery,
 } = allApiEndPoints;

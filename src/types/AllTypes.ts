@@ -63,3 +63,11 @@ export interface TFilterState {
 export interface TSearchData {
   field: string;
 }
+
+export interface TDiscount {
+  title: string;
+  bike_name: string;
+  bike_pricePerHour: number;
+  bike_discount: number;
+  bikeId: string;
+}
