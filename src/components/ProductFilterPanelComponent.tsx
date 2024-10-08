@@ -37,7 +37,6 @@ function ProductFilterPanelComponent({
   const activeFilters: TFilterData[] = filters.filter(
     (each) => each.filter_checked
   );
-  console.log(allBikes);
 
   const brandPanelData = allBikes
     .map((bike) => bike.brand)

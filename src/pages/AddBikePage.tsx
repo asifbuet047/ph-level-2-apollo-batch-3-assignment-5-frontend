@@ -16,7 +16,7 @@ function AddBikePage() {
     formState: { errors },
   } = useForm();
 
-  const [createBike, { isError, isSuccess, isLoading, error }] =
+  const [createBike, { isError, isSuccess, isLoading }] =
     useCreateBikeMutation();
   const navigate = useNavigate();
   const refForWidth = useRef(null);
@@ -70,6 +70,7 @@ function AddBikePage() {
                 type="text"
                 placeholder="Bike name"
                 sx={{ marginBottom: 2 }}
+                disabled={isSuccess}
                 {...register("name", { required: true, minLength: 3 })}
               />
             )}
@@ -97,6 +98,7 @@ function AddBikePage() {
                 error={errors.description ? true : false}
                 fullWidth
                 sx={{ marginBottom: 2 }}
+                disabled={isSuccess}
                 {...register("description", { required: true })}
               />
             )}
@@ -125,6 +127,7 @@ function AddBikePage() {
                 error={errors.category ? true : false}
                 fullWidth
                 sx={{ marginBottom: 2 }}
+                disabled={isSuccess}
                 {...register("cc", { required: true })}
               />
             )}
@@ -154,6 +157,7 @@ function AddBikePage() {
                 error={errors.brand ? true : false}
                 fullWidth
                 sx={{ marginBottom: 2 }}
+                disabled={isSuccess}
                 {...register("brand", { required: true })}
               />
             )}
@@ -183,6 +187,7 @@ function AddBikePage() {
                 error={errors.quantity ? true : false}
                 fullWidth
                 sx={{ marginBottom: 2 }}
+                disabled={isSuccess}
                 {...register("pricePerHour", { required: true, min: 1 })}
               />
             )}
@@ -212,6 +217,7 @@ function AddBikePage() {
                 error={errors.price ? true : false}
                 fullWidth
                 sx={{ marginBottom: 2 }}
+                disabled={isSuccess}
                 {...register("year", { required: true, min: 1900 })}
               />
             )}
@@ -241,19 +247,32 @@ function AddBikePage() {
                 error={errors.price ? true : false}
                 fullWidth
                 sx={{ marginBottom: 2 }}
+                disabled={isSuccess}
                 {...register("model", { required: true, min: 1900 })}
               />
             )}
 
             {errors.price && <p>Bike model name is required</p>}
 
-            <input
-              type="file"
-              className="file-input file-input-bordered w-full max-w-xs mt-2 mb-2"
-              {...register("bike_image", {
-                required: true,
-              })}
-            />
+            {isLoading ? (
+              <input
+                type="file"
+                disabled
+                className="file-input file-input-bordered w-full max-w-xs mt-2 mb-2"
+                {...register("bike_image", {
+                  required: true,
+                })}
+              />
+            ) : (
+              <input
+                type="file"
+                disabled={isSuccess}
+                className="file-input file-input-bordered w-full max-w-xs mt-2 mb-2"
+                {...register("bike_image", {
+                  required: true,
+                })}
+              />
+            )}
 
             {errors.bike_image && <p>File is required</p>}
 
@@ -263,22 +282,23 @@ function AddBikePage() {
               </p>
             )}
 
-            {!isSuccess ? (
+            {isLoading ? (
               <Button
                 variant="contained"
-                className="btn mt-2 mb-2"
+                className="mt-2 mb-2"
                 type="submit"
-                disabled={isLoading}
+                disabled
               >
-                Add product
+                Adding Bike...
               </Button>
             ) : (
               <Button
                 variant="outlined"
-                className="btn mt-2 mb-2"
-                onClick={() => navigate("/products")}
+                className="mt-2 mb-2"
+                type="submit"
+                onClick={() => isSuccess && navigate("/bikes")}
               >
-                Go to All Bike Page
+                {isSuccess ? "Go to all bike page" : "Add Bike"}
               </Button>
             )}
           </form>

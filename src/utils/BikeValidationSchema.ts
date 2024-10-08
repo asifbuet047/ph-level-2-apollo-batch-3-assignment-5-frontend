@@ -50,7 +50,7 @@ const bikeCreationValidationSchema = z.object({
     .boolean({
       invalid_type_error: "Availability must be boolean",
     })
-    .default(false),
+    .default(true),
 });
 
 const bikeUpdateValidationSchema = z.object({
