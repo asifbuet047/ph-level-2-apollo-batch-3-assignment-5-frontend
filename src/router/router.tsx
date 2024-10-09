@@ -5,6 +5,8 @@ import HomePage from "../pages/HomePage";
 import AuthenticationPage from "../pages/AuthenticationPage";
 import AllBikesPage from "../pages/AllBikesPage";
 import AddBikePage from "../pages/AddBikePage";
+import SignupPage from "../pages/SignupPage";
+import LoggingPage from "../pages/LoggingPage";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,16 @@ const router = createBrowserRouter([
       {
         path: "/add",
         element: <AddBikePage />,
+        errorElement: <NoRouteFoundPage />,
+      },
+      {
+        path: "/signup",
+        element: <SignupPage />,
+        errorElement: <NoRouteFoundPage />,
+      },
+      {
+        path: "/login",
+        element: <LoggingPage />,
         errorElement: <NoRouteFoundPage />,
       },
     ],

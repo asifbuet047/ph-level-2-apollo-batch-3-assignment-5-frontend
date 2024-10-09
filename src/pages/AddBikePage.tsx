@@ -31,7 +31,7 @@ function AddBikePage() {
   }, []);
 
   if (isError) {
-    toast.error("Product addition error. Please try later");
+    toast.error("Bike addition error. Please try later");
   }
   if (isSuccess) {
     toast.success(`${getValues().name} is successfully created`);

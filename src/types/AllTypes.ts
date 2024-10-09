@@ -73,7 +73,22 @@ export interface TDiscount {
 }
 
 export interface TAuthorizedUserInfo {
+  name: string;
   email: string;
-  role: "user" | "admin";
+  role: string;
   token: string;
+}
+
+export interface TUSer {
+  name: string;
+  email: string;
+  password: string;
+  phone: string;
+  address: string;
+  role: string;
+}
+
+export interface TUserCredentials {
+  email: string;
+  password: string;
 }

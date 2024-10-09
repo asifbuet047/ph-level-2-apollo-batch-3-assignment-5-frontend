@@ -1,17 +1,21 @@
 import React from "react";
 import { useAppSelector } from "../redux/hooks";
 import { TAuthorizedUserInfo } from "../types/AllTypes";
-import SignupPage from "./SignupPage";
+import { Avatar } from "@mui/material";
 
-function AuthenticationPage() {
+function LoggedInButtonComponent() {
   const currentUser = useAppSelector(
     (state) => state.auth
   ) as TAuthorizedUserInfo;
   if (currentUser.email) {
-    return <div></div>;
+    return (
+      <div>
+        <Avatar>{currentUser.name.charAt(0)}</Avatar>
+      </div>
+    );
   } else {
-    return <SignupPage />;
+    return <div>Log In or Sign Up</div>;
   }
 }
 
-export default AuthenticationPage;
+export default LoggedInButtonComponent;

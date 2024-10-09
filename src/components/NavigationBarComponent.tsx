@@ -2,6 +2,7 @@ import { Badge, Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../redux/hooks";
 import { TCartData } from "../types/AllTypes";
+import LoggedInButtonComponent from "./LoggedInButtonComponent";
 
 function NavigationBarComponent() {
   const cart = useAppSelector((state) => state.cart.carts) as TCartData[];
@@ -39,7 +40,7 @@ function NavigationBarComponent() {
           </li>
           <li className="pl-2 pr-2">
             <NavLink to={"/auth"}>
-              <Button variant="outlined">Log In or Sign Up</Button>
+              <LoggedInButtonComponent />
             </NavLink>
           </li>
         </ul>

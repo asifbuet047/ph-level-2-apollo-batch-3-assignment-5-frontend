@@ -3,6 +3,7 @@ import {
   TDiscount,
   TGenericSuccessfulResponse,
   TPaymentIntentParams,
+  TUSer,
 } from "../../types/AllTypes";
 import { baseApi } from "./baseApi";
 
@@ -165,6 +166,48 @@ export const allApiEndPoints = baseApi.injectEndpoints({
           };
         },
       }),
+      signupUser: builder.mutation({
+        query: (user) => {
+          return {
+            url: "/auth/signup",
+            method: "POST",
+            body: user,
+          };
+        },
+        transformResponse: (
+          response: TGenericSuccessfulResponse<Partial<TUSer>>
+        ) => {
+          return {
+            data: response.data,
+          };
+        },
+        transformErrorResponse: (response) => {
+          return {
+            error: response.data,
+          };
+        },
+      }),
+      loggingUser: builder.mutation({
+        query: (crendentials) => {
+          return {
+            url: "/auth/login",
+            method: "POST",
+            body: crendentials,
+          };
+        },
+        transformResponse: (
+          response: TGenericSuccessfulResponse<Partial<TUSer>>
+        ) => {
+          return {
+            data: response.data,
+          };
+        },
+        transformErrorResponse: (response) => {
+          return {
+            error: response.data,
+          };
+        },
+      }),
     };
   },
 });
@@ -176,4 +219,6 @@ export const {
   useUpdateSingleBikeMutation,
   useDeleteSingleBikeMutation,
   useGetAllDiscountsQuery,
+  useSignupUserMutation,
+  useLoggingUserMutation,
 } = allApiEndPoints;
