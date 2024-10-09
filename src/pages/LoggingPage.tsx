@@ -53,12 +53,15 @@ function LoggingPage() {
     loginUser(user);
   };
   return (
-    <div className="flex flex-col items-center justify-between align-middle w-full bg-[#C0F5FA] py-2">
-      <Card title="Add Product" variant="elevation" className="md:w-1/2">
-        <div>
+    <div className="flex flex-col items-center justify-between align-middle w-full bg-[#C0F5FA] py-2 px-2">
+      <Card title="Add Product" variant="elevation" className="w-full md:w-1/2">
+        <div className="flex flex-col justify-center items-center">
+          <p className="xs:text-xl md:text-4xl text-6xl font-bold text-center text-black mt-5 mb-5">
+            Log In into Your account
+          </p>
           <form
             onSubmit={handleSubmit(submit)}
-            className="flex flex-col justify-center align-middle items-center p-5"
+            className="flex flex-col justify-center align-middle items-center p-5 w-full"
             encType="multipart/form-data"
             ref={refForWidth}
           >

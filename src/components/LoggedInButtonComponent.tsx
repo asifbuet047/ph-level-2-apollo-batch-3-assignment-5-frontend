@@ -21,7 +21,7 @@ function LoggedInButtonComponent() {
   const handleClose = () => {
     setAnchorElement(null);
   };
-  if (currentUser) {
+  if (currentUser.name) {
     return (
       <div>
         <Tooltip title="Account settings" className="border-2">
@@ -42,41 +42,51 @@ function LoggedInButtonComponent() {
           variant="menu"
         >
           <MenuItem onClick={handleClose}>
-            <div className="w-full flex flex-row justify-start items-center">
-              <div className="w-1/3">
-                <AccountCircle fontSize="medium" />
+            <NavLink to={"/profile"}>
+              <div className="w-full flex flex-row justify-start items-center">
+                <div className="w-1/3">
+                  <AccountCircle fontSize="medium" />
+                </div>
+                <div className="w-2/3">
+                  <span>My Profile</span>
+                </div>
               </div>
-              <div className="w-2/3">
-                <span>My Profile</span>
-              </div>
-            </div>
+            </NavLink>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <div className="w-full flex flex-row justify-start items-center">
-              <div className="w-1/3">
-                <ShoppingCart fontSize="medium" />
+            <NavLink to={"/cart"}>
+              <div className="w-full flex flex-row justify-start items-center">
+                <div className="w-1/3">
+                  <ShoppingCart fontSize="medium" />
+                </div>
+                <div className="w-2/3">
+                  <span>My Cart</span>
+                </div>
               </div>
-              <div className="w-2/3">
-                <span>My Cart</span>
-              </div>
-            </div>
+            </NavLink>
           </MenuItem>
           <Divider />
           <MenuItem onClick={handleClose}>
-            <div className="w-full flex flex-row justify-start items-center">
-              <div className="w-1/3">
-                <Logout fontSize="medium" />
+            <NavLink to={"/logout"}>
+              <div className="w-full flex flex-row justify-start items-center">
+                <div className="w-1/3">
+                  <Logout fontSize="medium" />
+                </div>
+                <div className="w-2/3">
+                  <span>Logout</span>
+                </div>
               </div>
-              <div className="w-2/3">
-                <span>Logout</span>
-              </div>
-            </div>
+            </NavLink>
           </MenuItem>
         </Menu>
       </div>
     );
   } else {
-    return <div>Log In or Sign Up</div>;
+    return (
+      <NavLink to={"/login"}>
+        <div>Log In or Sign Up</div>
+      </NavLink>
+    );
   }
 }
 

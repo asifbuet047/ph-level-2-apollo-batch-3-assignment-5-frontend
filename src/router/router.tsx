@@ -9,6 +9,7 @@ import SignupPage from "../pages/SignupPage";
 import LoggingPage from "../pages/LoggingPage";
 import ProfilePage from "../pages/ProfilePage";
 import LogoutPage from "../pages/LogoutPage";
+import CartPage from "../pages/CartPage";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,11 @@ const router = createBrowserRouter([
       {
         path: "/logout",
         element: <LogoutPage />,
+        errorElement: <NoRouteFoundPage />,
+      },
+      {
+        path: "/cart",
+        element: <CartPage />,
         errorElement: <NoRouteFoundPage />,
       },
     ],
