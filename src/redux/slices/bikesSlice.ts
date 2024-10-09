@@ -20,6 +20,7 @@ export const bikes = createSlice({
     },
     updateSingleBike: (state, action: PayloadAction<TBike>) => {
       const index = state.bikes.findIndex(
+        // @ts-expect-error
         (bike) => bike._id == action.payload._id
       );
       if (index >= 0) {
@@ -27,6 +28,7 @@ export const bikes = createSlice({
       }
     },
     removeSingleBike: (state, action: PayloadAction<string>) => {
+      // @ts-expect-error
       state.bikes = state.bikes.filter((bike) => bike._id != action.payload);
     },
     removeAllBikes: (state) => {
