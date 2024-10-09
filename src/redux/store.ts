@@ -17,7 +17,7 @@ const cartPersistedConfiguration = {
 const authPersistedConfiguration = {
   key: "auth",
   storage,
-  whitelist: ["email", "token", "role"],
+  whitelist: ["user"],
 };
 
 const cartPersistedReducer = persistReducer(

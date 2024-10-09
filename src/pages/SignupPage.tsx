@@ -5,7 +5,7 @@ import { useSignupUserMutation } from "../redux/api/allApiEndpoints";
 import { toast } from "react-toastify";
 import { Button, Card, TextField } from "@mui/material";
 import { BarLoader } from "react-spinners";
-import { TUSer } from "../types/AllTypes";
+import { TUser } from "../types/AllTypes";
 
 function SignupPage() {
   const {
@@ -39,7 +39,7 @@ function SignupPage() {
   }
 
   const submit = () => {
-    const user: TUSer = {
+    const user: TUser = {
       name: getValues("name"),
       email: getValues("email"),
       phone: getValues("phone"),

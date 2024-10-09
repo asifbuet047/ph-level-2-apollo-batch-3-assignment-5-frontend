@@ -3,7 +3,7 @@ import {
   TDiscount,
   TGenericSuccessfulResponse,
   TPaymentIntentParams,
-  TUSer,
+  TUser,
 } from "../../types/AllTypes";
 import { baseApi } from "./baseApi";
 
@@ -175,7 +175,7 @@ export const allApiEndPoints = baseApi.injectEndpoints({
           };
         },
         transformResponse: (
-          response: TGenericSuccessfulResponse<Partial<TUSer>>
+          response: TGenericSuccessfulResponse<Partial<TUser>>
         ) => {
           return {
             data: response.data,
@@ -196,10 +196,15 @@ export const allApiEndPoints = baseApi.injectEndpoints({
           };
         },
         transformResponse: (
-          response: TGenericSuccessfulResponse<Partial<TUSer>>
+          response: TGenericSuccessfulResponse<Partial<TUser>>,
+          meta
         ) => {
+          const token = meta?.response?.headers
+            .get("Authorization")
+            ?.split(" ")[1] as string;
           return {
-            data: response,
+            data: response.data,
+            token,
           };
         },
         transformErrorResponse: (response) => {

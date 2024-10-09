@@ -79,7 +79,11 @@ export interface TAuthorizedUserInfo {
   token: string;
 }
 
-export interface TUSer {
+export interface TAuth {
+  user: TAuthorizedUserInfo;
+}
+
+export interface TUser {
   name: string;
   email: string;
   password: string;

@@ -4,11 +4,8 @@ import { useLoggingUserMutation } from "../redux/api/allApiEndpoints";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAppDispatch } from "../redux/hooks";
-import {
-  updateCurrentLoggedinUserInfo,
-  updateCurrentLoggedinUserName,
-} from "../redux/slices/authSlice";
-import { TUserCredentials } from "../types/AllTypes";
+import { updateCurrentLoggedinUserInfo } from "../redux/slices/authSlice";
+import { TAuthorizedUserInfo, TUserCredentials } from "../types/AllTypes";
 import { Button, Card, TextField } from "@mui/material";
 import { BarLoader } from "react-spinners";
 
@@ -38,8 +35,14 @@ function LoggingPage() {
     toast.error("User doest not login. Try later");
   }
   if (isSuccess) {
-    toast.success(`${data.data.data.name} is logged up successfully.`);
-    dispatch(updateCurrentLoggedinUserName(data.data.data.name));
+    toast.success(`${data.data.name} is logged in successfully.`);
+    const currentUser: TAuthorizedUserInfo = {
+      name: data.data.name as string,
+      email: data.data.email as string,
+      role: data.data.role as string,
+      token: data.token as string,
+    };
+    dispatch(updateCurrentLoggedinUserInfo(currentUser));
   }
 
   const submit = () => {

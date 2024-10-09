@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TAuthorizedUserInfo } from "../../types/AllTypes";
+import { TAuth, TAuthorizedUserInfo } from "../../types/AllTypes";
 
-const initialState: TAuthorizedUserInfo = {
-  name: "",
-  email: "",
-  role: "",
-  token: "",
+const initialState: TAuth = {
+  user: {
+    name: "",
+    email: "",
+    role: "",
+    token: "",
+  },
 };
 
 const authSlice = createSlice({
@@ -16,25 +18,25 @@ const authSlice = createSlice({
       state,
       action: PayloadAction<TAuthorizedUserInfo>
     ) => {
-      state = action.payload;
+      state.user = action.payload;
     },
     updateCurrentLoggedinUserName: (state, action: PayloadAction<string>) => {
-      state.name = action.payload;
+      state.user.name = action.payload;
     },
     updateCurrentLoggedinUserToken: (state, action: PayloadAction<string>) => {
-      state.token = action.payload;
+      state.user.token = action.payload;
     },
     updateCurrentLoggedinUserRole: (state, action: PayloadAction<string>) => {
-      state.role = action.payload;
+      state.user.role = action.payload;
     },
     updateCurrentLoggedinUserEmail: (state, action: PayloadAction<string>) => {
-      state.email = action.payload;
+      state.user.email = action.payload;
     },
     removeCurrentLoggedinUser: (state) => {
-      state.email = "";
-      state.token = "";
-      state.name = "";
-      state.role = "";
+      state.user.email = "";
+      state.user.token = "";
+      state.user.name = "";
+      state.user.role = "";
     },
   },
 });

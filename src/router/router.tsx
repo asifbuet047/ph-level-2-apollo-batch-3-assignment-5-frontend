@@ -7,6 +7,8 @@ import AllBikesPage from "../pages/AllBikesPage";
 import AddBikePage from "../pages/AddBikePage";
 import SignupPage from "../pages/SignupPage";
 import LoggingPage from "../pages/LoggingPage";
+import ProfilePage from "../pages/ProfilePage";
+import LogoutPage from "../pages/LogoutPage";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,16 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoggingPage />,
+        errorElement: <NoRouteFoundPage />,
+      },
+      {
+        path: "/profile",
+        element: <ProfilePage />,
+        errorElement: <NoRouteFoundPage />,
+      },
+      {
+        path: "/logout",
+        element: <LogoutPage />,
         errorElement: <NoRouteFoundPage />,
       },
     ],
