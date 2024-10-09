@@ -4,13 +4,12 @@ import { TAuthorizedUserInfo } from "../types/AllTypes";
 import { Avatar } from "@mui/material";
 
 function LoggedInButtonComponent() {
-  const currentUser = useAppSelector(
-    (state) => state.auth
-  ) as TAuthorizedUserInfo;
-  if (currentUser.email) {
+  const currentUser = useAppSelector((state) => state.auth.name);
+  console.log(currentUser);
+  if (currentUser) {
     return (
       <div>
-        <Avatar>{currentUser.name.charAt(0)}</Avatar>
+        <Avatar>{currentUser}</Avatar>
       </div>
     );
   } else {

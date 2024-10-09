@@ -199,7 +199,7 @@ export const allApiEndPoints = baseApi.injectEndpoints({
           response: TGenericSuccessfulResponse<Partial<TUSer>>
         ) => {
           return {
-            data: response.data,
+            data: response,
           };
         },
         transformErrorResponse: (response) => {
