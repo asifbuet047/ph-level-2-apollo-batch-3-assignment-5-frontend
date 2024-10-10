@@ -10,6 +10,7 @@ import LoggingPage from "../pages/LoggingPage";
 import ProfilePage from "../pages/ProfilePage";
 import LogoutPage from "../pages/LogoutPage";
 import CartPage from "../pages/CartPage";
+import ProfileEditPage from "../pages/ProfileEditPage";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,11 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <CartPage />,
+        errorElement: <NoRouteFoundPage />,
+      },
+      {
+        path: "/edit",
+        element: <ProfileEditPage />,
         errorElement: <NoRouteFoundPage />,
       },
     ],

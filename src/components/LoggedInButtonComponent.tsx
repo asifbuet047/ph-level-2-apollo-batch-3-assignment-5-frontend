@@ -21,13 +21,13 @@ function LoggedInButtonComponent() {
   const handleClose = () => {
     setAnchorElement(null);
   };
-  if (currentUser.name) {
+  if (currentUser.info.name) {
     return (
       <div>
         <Tooltip title="Account settings" className="border-2">
           <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
             <Avatar sx={{ width: 32, height: 32 }}>
-              {currentUser.name.charAt(0)}
+              {currentUser.info.name.charAt(0)}
             </Avatar>
           </IconButton>
         </Tooltip>

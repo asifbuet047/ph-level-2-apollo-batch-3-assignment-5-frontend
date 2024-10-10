@@ -17,7 +17,7 @@ function LogoutPage() {
       <div className="flex flex-col justify-center items-center">
         {currentUser.name && (
           <p className="text-2xl md:text-6xl font-extrabold text-black mt-5 mb-5">
-            `Hi, {currentUser.name}`
+            Hi, {currentUser.name}
           </p>
         )}
 

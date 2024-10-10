@@ -1,4 +1,5 @@
 import {
+  TAuthorizedUserInfo,
   TBike,
   TDiscount,
   TGenericSuccessfulResponse,
@@ -213,6 +214,28 @@ export const allApiEndPoints = baseApi.injectEndpoints({
           };
         },
       }),
+      updateUserInfo: builder.mutation({
+        query: (userInfo: Partial<TAuthorizedUserInfo>) => {
+          return {
+            url: "/users/me",
+            method: "PUT",
+            body: userInfo.info,
+            headers: {
+              Authorization: `Bearer ${userInfo.token}`,
+            },
+          };
+        },
+        transformResponse: (response: TGenericSuccessfulResponse<TUser>) => {
+          return {
+            data: response.data,
+          };
+        },
+        transformErrorResponse: (response) => {
+          return {
+            error: response.data,
+          };
+        },
+      }),
     };
   },
 });
@@ -226,4 +249,5 @@ export const {
   useGetAllDiscountsQuery,
   useSignupUserMutation,
   useLoggingUserMutation,
+  useUpdateUserInfoMutation,
 } = allApiEndPoints;

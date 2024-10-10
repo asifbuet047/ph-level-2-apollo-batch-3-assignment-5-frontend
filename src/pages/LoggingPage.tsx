@@ -5,8 +5,21 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAppDispatch } from "../redux/hooks";
 import { updateCurrentLoggedinUserInfo } from "../redux/slices/authSlice";
-import { TAuthorizedUserInfo, TUserCredentials } from "../types/AllTypes";
-import { Button, Card, TextField } from "@mui/material";
+import {
+  TAuthorizedUserInfo,
+  TUser,
+  TUserCredentials,
+} from "../types/AllTypes";
+import {
+  Backdrop,
+  Box,
+  Button,
+  Card,
+  Fade,
+  Modal,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { BarLoader } from "react-spinners";
 
 function LoggingPage() {
@@ -21,7 +34,10 @@ function LoggingPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const refForWidth = useRef(null);
+  const [open, setOpen] = useState<boolean>(false);
   const [viewWidth, setViewWidth] = useState(0);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     if (refForWidth.current) {
@@ -29,20 +45,28 @@ function LoggingPage() {
       // @ts-ignore
       setViewWidth(refForWidth.current.offsetWidth);
     }
-  }, []);
+    if (isSuccess) {
+      handleOpen();
+    }
+  }, [isSuccess]);
 
   if (isError) {
     toast.error("User doest not login. Try later");
   }
   if (isSuccess) {
-    toast.success(`${data.data.name} is logged in successfully.`);
-    const currentUser: TAuthorizedUserInfo = {
+    const currentUser: TUser = {
       name: data.data.name as string,
       email: data.data.email as string,
       role: data.data.role as string,
-      token: data.token as string,
+      address: data.data.address as string,
+      phone: data.data.phone as string,
     };
-    dispatch(updateCurrentLoggedinUserInfo(currentUser));
+    const token = data.token as string;
+    const loggedUser: TAuthorizedUserInfo = {
+      info: currentUser,
+      token,
+    };
+    dispatch(updateCurrentLoggedinUserInfo(loggedUser));
   }
 
   const submit = () => {
@@ -52,10 +76,22 @@ function LoggingPage() {
     };
     loginUser(user);
   };
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "calc(100%-50%)",
+    bgcolor: "background.paper",
+    border: "2px solid #C0F5FA",
+    boxShadow: 24,
+    p: 4,
+  };
   return (
     <div className="flex flex-col items-center justify-between align-middle w-full bg-[#C0F5FA] py-2 px-2">
-      <Card title="Add Product" variant="elevation" className="w-full md:w-1/2">
-        <div className="flex flex-col justify-center items-center">
+      <Card title="Log In" variant="elevation" className="w-full md:w-1/2 ">
+        <div className="flex flex-col justify-center items-center bg-[#55E4F1]">
           <p className="xs:text-xl md:text-4xl text-6xl font-bold text-center text-black mt-5 mb-5">
             Log In into Your account
           </p>
@@ -138,18 +174,49 @@ function LoggingPage() {
                 Logging User...
               </Button>
             ) : (
-              <Button
-                variant="outlined"
-                className="mt-2 mb-2"
-                type="submit"
-                onClick={() => isSuccess && navigate("/profile")}
-              >
-                {isSuccess ? "Go to Your profile page" : "Log In"}
-              </Button>
+              <div className="flex flex-row justify-center w-full">
+                <div className="w-1/2 px-2">
+                  <Button
+                    variant="contained"
+                    className="my-2 mx-2 w-full"
+                    type="submit"
+                    onClick={() => isSuccess && navigate("/profile")}
+                  >
+                    {isSuccess ? "Go to Your profile page" : "Log In"}
+                  </Button>
+                </div>
+
+                {!isSuccess && (
+                  <div className="w-1/2 px-2" onClick={() => handleOpen()}>
+                    <Button variant="contained" className="my-2 mx-2 w-full">
+                      Or, Sign Up
+                    </Button>
+                  </div>
+                )}
+              </div>
             )}
           </form>
         </div>
       </Card>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+          },
+        }}
+      >
+        <Fade in={open}>
+          <Box sx={style}>
+            <div>
+              <p className="text-6xl">Hi {data?.data.name}, Welcome</p>
+            </div>
+          </Box>
+        </Fade>
+      </Modal>
     </div>
   );
 }
