@@ -11,6 +11,7 @@ import ProfilePage from "../pages/ProfilePage";
 import LogoutPage from "../pages/LogoutPage";
 import CartPage from "../pages/CartPage";
 import ProfileEditPage from "../pages/ProfileEditPage";
+import ProtectedComponent from "../components/ProtectedComponent";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/add",
-        element: <AddBikePage />,
+        element: (
+          <ProtectedComponent>
+            <AddBikePage />
+          </ProtectedComponent>
+        ),
         errorElement: <NoRouteFoundPage />,
       },
       {
@@ -50,7 +55,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <ProfilePage />,
+        element: (
+          <ProtectedComponent>
+            <ProfilePage />
+          </ProtectedComponent>
+        ),
         errorElement: <NoRouteFoundPage />,
       },
       {
